@@ -28,7 +28,7 @@ jobs:
           ./mvnw test
   build-native:
     if: github.ref == 'refs/heads/master'
-    needs: test-native
+    needs: test
     runs-on: ubuntu-latest
     env:
       MVN: mvn --show-version --batch-mode
