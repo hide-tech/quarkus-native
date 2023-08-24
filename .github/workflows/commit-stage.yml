@@ -7,6 +7,25 @@ env:
   VERSION: ${{ github.sha }}
 
 jobs:
+  test:
+    name: Build and Test
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: openjdk
+          java-version: 17
+          cache: maven
+      - name: Build, unit tests and integration tests
+        run: |
+          chmod +x mvnw
+          ./mvnw test
   package:
     name: Package and Publish
     needs: [ build, native ]
