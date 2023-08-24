@@ -28,7 +28,7 @@ jobs:
           ./mvnw test
   package:
     name: Package and Publish
-    needs: [ build, native ]
+    needs: [ test ]
     runs-on: ubuntu-22.04
     permissions:
       contents: read
