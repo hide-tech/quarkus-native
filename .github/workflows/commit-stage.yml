@@ -19,7 +19,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: openjdk
+          distribution: oracle
           java-version: 17
           cache: maven
       - name: Build, unit tests and integration tests
@@ -40,7 +40,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: openjdk
+          distribution: oracle
           java-version: 17
           cache: maven
       - name: Build container image
