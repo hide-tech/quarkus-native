@@ -29,6 +29,10 @@ jobs:
   build-native:
     if: github.ref == 'refs/heads/master'
     needs: test
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
     runs-on: ubuntu-latest
     env:
       MVN: mvn --show-version --batch-mode
@@ -53,5 +57,5 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: mvn package -Pnative -DskipTests -Dquarkus.native.container-build=true -Dquarkus.container-image.push=true
+      - name: package native image
         run: $MVN package -Pnative -DskipTests -Dquarkus.native.container-build=true -Dquarkus.container-image.push=true -Dquarkus.container-image.image=ghcr.io/hide-tech/quarkus-native:latest '-Dquarkus.jib.labels."org.opencontainers.image.revision"='$GITHUB_SHA

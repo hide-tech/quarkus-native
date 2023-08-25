@@ -3,7 +3,7 @@ services:
   native-service:
     depends_on:
       - native-postgres
-    image: "native"
+    image: "ghcr.io/hide-tech/quarkus-native"
     container_name: "native-service"
     ports:
       - 8080:8080
